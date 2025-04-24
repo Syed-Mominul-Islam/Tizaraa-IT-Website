@@ -1123,7 +1123,7 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 900px;
+    /* width: 900px; */
     max-width: 75%;
     height: 100%;
     -webkit-box-orient: vertical;
@@ -1879,3 +1879,29 @@ body {
     -webkit-transition-delay: .16s;
     transition-delay: .16s
 }
+
+
+.slider-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+  }
+  
+  .slider-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+  
+  .slider-track {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  .slider-container a {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between items */
+    white-space: normal;
+    vertical-align: top;
+    width: 200px; /* Adjust width as needed */
+  }
