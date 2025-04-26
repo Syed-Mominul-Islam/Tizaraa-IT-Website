@@ -9,6 +9,75 @@
   <meta name="keywords" content="global, template, html, sass, jquery">
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* About Slider Styles */
+.about-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-slider--container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.about--options {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  justify-content: space-around;
+  padding: 0 20px;
+  gap: 10px;
+}
+
+.about--options a {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.about--options a:hover {
+  transform: translateY(-5px);
+}
+
+.about-slider--nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.about-slider--prev,
+.about-slider--next {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.about-slider--prev svg,
+.about-slider--next svg {
+  width: 30px;
+  height: 30px;
+  fill: #FC4D04;
+}
+
+.about-slider--prev {
+  transform: translateX(10px);
+}
+
+.about-slider--next {
+  transform: translateX(-10px);
+}
+  </style>
 </head>
 <body>
 
@@ -164,6 +233,8 @@
               </div>
             </div>
           </li>
+
+
           <li class="l-section section">
             <div class="about">
               <div class="about--banner">
@@ -179,25 +250,44 @@
                 </a>
                 <img src="assets/img/about-visual.png" alt="About Us">
               </div>
-              <div class="about--options">
-                <a href="https://daiki-axisbd.com/" target="_blank">
-                  <h3>Daiki Axis</h3>
-                </a>
-                <a href="https://charmbd.com/" target="_blank">
-                  <h3>Charm</h3>
-                </a>
-                <a href="https://revencobd.com/" target="_blank">
-                  <h3>Revenco</h3>
-                </a>
-                <a href="https://creatifbd.com/" target="_blank">
-                  <h3>Creatif</h3>
-                </a>
-                <a href="https://tizaraa.com/" target="_blank">
-                  <h3>Tizaraa</h3>
-                </a>
+              <div class="about-slider">
+                <div class="about-slider--container">
+                  <div class="about--options">
+                    <a href="https://daiki-axisbd.com/" target="_blank">
+                      <h3>Daiki Axis</h3>
+                    </a>
+                    <a href="https://charmbd.com/" target="_blank">
+                      <h3>Charm</h3>
+                    </a>
+                    <a href="https://revencobd.com/" target="_blank">
+                      <h3>Revenco</h3>
+                    </a>
+                    <a href="https://creatifbd.com/" target="_blank">
+                      <h3>Creatif</h3>
+                    </a>
+                    <a href="https://tizaraa.com/" target="_blank">
+                      <h3>Tizaraa</h3>
+                    </a>
+                  </div>
+                </div>
+                <div class="about-slider--nav">
+                  <button class="about-slider--prev">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 118">
+                      <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
+                    </svg>
+                  </button>
+                  <button class="about-slider--next">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 118">
+                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </li>
+
+
+
           <li class="l-section section">
             <div class="contact" onclick="window.open('https://www.google.ca/maps/place/Tizaraa/@23.7891724,90.4119842,17z/data=!4m6!3m5!1s0x3755c73f6a6db665:0x7c0120acdc3faa0c!8m2!3d23.7892035!4d90.4137515!16s%2Fg%2F11y7k6nqyg?coh=245189&entry=tts&g_ep=EgoyMDI1MDQxNi4xIPu8ASoJLDEwMjExNDU1SAFQAw%3D%3D', '_blank')" style="cursor: pointer;">
               <div class="contact--lockup">
@@ -361,5 +451,58 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="assets/js/functions-min.js"></script>
+<script>
+  // About Slider Functionality
+$(document).ready(function() {
+  const aboutSlider = $('.about-slider--container');
+  const aboutOptions = $('.about--options');
+  const prevBtn = $('.about-slider--prev');
+  const nextBtn = $('.about-slider--next');
+  
+  let currentSlide = 0;
+  const totalSlides = aboutOptions.length;
+  const slideWidth = aboutOptions.width();
+  
+  // Clone the first set of options for infinite loop
+  aboutOptions.clone().appendTo(aboutSlider);
+  
+  function goToSlide(index) {
+    aboutSlider.css('transform', `translateX(-${index * slideWidth}px)`);
+    currentSlide = index;
+  }
+  
+  function nextSlide() {
+    if (currentSlide >= totalSlides) {
+      // If we're at the end, instantly jump to the start (clone)
+      aboutSlider.css('transition', 'none');
+      goToSlide(0);
+      // Force reflow
+      aboutSlider.offset();
+      aboutSlider.css('transition', 'transform 0.5s ease');
+    } else {
+      goToSlide(currentSlide + 1);
+    }
+  }
+  
+  function prevSlide() {
+    if (currentSlide <= 0) {
+      // If we're at the start, instantly jump to the end (clone)
+      aboutSlider.css('transition', 'none');
+      goToSlide(totalSlides);
+      // Force reflow
+      aboutSlider.offset();
+      aboutSlider.css('transition', 'transform 0.5s ease');
+    } else {
+      goToSlide(currentSlide - 1);
+    }
+  }
+  
+  nextBtn.on('click', nextSlide);
+  prevBtn.on('click', prevSlide);
+  
+  // Optional: Auto-advance slides
+  setInterval(nextSlide, 5000);
+});
+</script>
 </body>
 </html>
